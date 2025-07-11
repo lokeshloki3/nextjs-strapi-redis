@@ -12,9 +12,9 @@ export async function POST(req: Request) {
   console.log("body", body);
 
   // If this is a webhook test event
-  if (body.event === 'trigger-test') {
-    return NextResponse.json({ ok: true, test: true });
-  }
+  // if (body.event === 'trigger-test') {
+  //   return NextResponse.json({ ok: true, test: true });
+  // }
 
   const uid = body.uid; // e.g., "api::article.article" or "api::blog.blog"
   const slug = body.entry?.slug;

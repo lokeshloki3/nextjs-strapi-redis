@@ -18,7 +18,7 @@ export async function getAllArticles() {
   const response = await axios.get(`${API_URL}/articles?populate=*`);
 
   // Cache it for 60 seconds
-  await redis.set(cacheKey, JSON.stringify(response.data), 'EX', 260);
+  await redis.set(cacheKey, JSON.stringify(response.data), 'EX', 60);
   console.log(`Data cached with key: ${cacheKey}`);
 
   return response.data;
@@ -42,7 +42,7 @@ export async function getArticleBySlug(slug: string, status: string) {
     });
 
     // console.log("data", response.data);
-    await redis.set(cacheKey, JSON.stringify(response.data), 'EX', 260);
+    await redis.set(cacheKey, JSON.stringify(response.data), 'EX', 60);
     console.log(`Data cached with key: ${cacheKey}`);
 
     return response.data;

@@ -1,0 +1,41 @@
+import axios from 'axios';
+import { getStrapiURL } from './utils';
+
+const STRAPI_BASE_URL = getStrapiURL();
+const API_URL = `${STRAPI_BASE_URL}/api`;
+
+
+// const headers = {
+//   Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+// };
+
+export async function getAllArticles() {
+  const response = await axios.get(`${API_URL}/articles?populate=*`, {
+    // headers,
+  });
+  return response.data;
+}
+
+export async function getArticleBySlug(slug: string, status: string) {
+  try {
+    console.log("slug", slug);
+    console.log("status", status);
+
+    const response = await axios.get(`${API_URL}/articles`, {
+      params: {
+        'filters[slug][$eq]': slug,
+        'status': status, // 'draft' or 'published'
+        'populate': '*',
+      },
+      // headers: {
+      //   Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+      // },
+    });
+
+    return response.data;
+    // return response;
+  } catch (error) {
+    console.error("Error fetching article:", error);
+    throw error;
+  }
+}

@@ -1,6 +1,6 @@
 // config/plugins.ts
 
-export default ({env}) => ({
+export default ({ env }) => ({
   email: {
     config: {
       provider: 'mailgun',
@@ -10,8 +10,12 @@ export default ({env}) => ({
         url: env('MAILGUN_URL', 'https://api.mailgun.net'), // Optional, defaults to this
       },
       settings: {
-        defaultFrom: 'loki213012@gmail.com',
-        defaultReplyTo: 'loki213012@gmail.com',
+        // defaultFrom: 'loki213012@gmail.com',
+        // defaultReplyTo: 'loki213012@gmail.com',
+
+        defaultFrom: env('EMAIL_DEFAULT_FROM'),
+        defaultReplyTo: env('EMAIL_DEFAULT_REPLY_TO'),
+
       },
     },
   },

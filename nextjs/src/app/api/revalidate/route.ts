@@ -1,3 +1,5 @@
+// if use lifecycle then no use of it, as webhook is not used
+
 import { NextResponse } from 'next/server';
 import redis from '@/lib/redis';
 

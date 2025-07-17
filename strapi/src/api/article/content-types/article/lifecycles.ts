@@ -7,8 +7,8 @@ export default {
 
     // Send email
     await strapi.plugins['email'].services.email.send({
-      to: 'loki213012@gmail.com',
-      // to: process.env.EMAIL_TO_ADDRESS,
+      // to: 'loki213012@gmail.com',
+      to: process.env.EMAIL_TO_ADDRESS,
       subject: `New Lead Submission from ${title}`,
       html: `
         <h3>New Title Details</h3>
